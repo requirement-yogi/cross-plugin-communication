@@ -32,6 +32,7 @@
 
     <modules>
         <module>plugin-a</module>
+        <module>plugin-b</module>
     </modules>
 
     <dependencyManagement>

@@ -25,6 +25,6 @@ public class InfoResource {
     @GET
     //@Produces(BaseUtils.JSON_UTF8)
     public String info() {
-        return "Plugin A";
+        return "Plugin B";
     }
 }
