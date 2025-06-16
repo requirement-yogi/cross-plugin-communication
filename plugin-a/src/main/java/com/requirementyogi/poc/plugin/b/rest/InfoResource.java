@@ -1,7 +1,4 @@
-package com.requirementyogi.poc.plugin.a.rest;
-
-import com.atlassian.confluence.core.ContextPathHolder;
-import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
+package com.requirementyogi.poc.plugin.b.rest;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -25,6 +22,6 @@ public class InfoResource {
     @GET
     //@Produces(BaseUtils.JSON_UTF8)
     public String info() {
-        return "Plugin B";
+        return "Plugin A";
     }
 }

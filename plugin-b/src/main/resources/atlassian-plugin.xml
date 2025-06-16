@@ -31,7 +31,7 @@
 
     <rest key="rest" path="/${project.artifactId}" version="1" name="REST resources">
         <description>REST API for Requirement Yogi</description>
-        <package>com.requirementyogi.poc.plugin.a.rest</package>
+        <package>com.requirementyogi.poc.plugin.b.rest</package>
     </rest>
 
 
