@@ -40,13 +40,28 @@
                             javax.inject;resolution:=optional;version="0.0.0",
                             javax.lang.model.element;resolution:=optional;version="0.0.0",
                             javax.ws.rs;resolution:=optional;version="0.0.0",
+
+                            <!-- For Spring annotations -->
+                            org.springframework.stereotype;resolution:=optional;version="0.0.0",
+                            org.springframework.lang;resolution:=optional;version="0.0.0",
+                            org.springframework.beans;resolution:=optional;version="0.0.0",
+                            org.springframework.beans.factory;resolution:=optional;version="0.0.0",
+                            org.springframework.beans.factory.config;resolution:=optional;version="0.0.0",
                             org.springframework.beans.factory.annotation;resolution:=optional;version="0.0.0",
+                            org.springframework.util;resolution:=optional;version="0.0.0",
+                            com.atlassian.spring.container;resolution:=optional;version="0.0.0",
+                            org.springframework.cglib.core;resolution:=optional;version="0.0.0",
+                            org.springframework.cglib.proxy;resolution:=optional;version="0.0.0",
+                            org.springframework.cglib.reflect;resolution:=optional;version="0.0.0",
 
                             <!-- For the spring scanner -->
                             org.jspecify.annotations;resolution:=optional;version="0.0.0",
                             sun.misc;resolution:=optional;version="0.0.0",
                             *
                         </Import-Package>
+                        <Export-Package>
+                            com.requirementyogi.poc.plugin.b.api
+                        </Export-Package>
 
                                                 <!--<Atlassian-Scan-Folders>META-INF/plugin-descriptors</Atlassian-Scan-Folders>-->
 <!--                        <Import-Package>-->

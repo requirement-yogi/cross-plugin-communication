@@ -1,4 +1,4 @@
-package com.requirementyogi.poc.plugin.b.rest;
+package com.requirementyogi.poc.plugin.a.rest;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;

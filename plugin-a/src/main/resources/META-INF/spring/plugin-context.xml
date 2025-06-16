@@ -13,6 +13,6 @@
 
     <!-- See https://bitbucket.org/atlassian/atlassian-spring-scanner/src/master/
     for the tutorial about setting up the Spring Scanner -->
-    <context:component-scan base-package="com.requirementyogi.poc.plugin.a" />
+    <context:component-scan base-package="com.requirementyogi.poc.plugin.a.config" />
     <atlassian-scanner:scan-indexes/>
 </beans>

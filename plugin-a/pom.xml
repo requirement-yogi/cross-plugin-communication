@@ -21,6 +21,15 @@
         </license>
     </licenses>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.requirementyogi.poc</groupId>
+            <artifactId>plugin-b</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -32,7 +41,11 @@
                         <!-- Ensure the plugin is Spring-powered -->
                         <Spring-Context>*</Spring-Context>
                         <Atlassian-Plugin-Key>${project.artifactId}</Atlassian-Plugin-Key>
+                        <DynamicImport-Package>
+                            com.requirementyogi.poc.plugin.b.api;resolution:=optional;version="0.0"
+                        </DynamicImport-Package>
                         <Import-Package>
+                            !com.requirementyogi.poc.plugin.b.api,
                             com.atlassian.confluence.core;resolution:=optional;version="0.0.0",
                             com.atlassian.plugin.spring.scanner.annotation.imports;resolution:=optional;version="0.0.0",
                             javax.crypto;resolution:=optional;version="0.0.0",
