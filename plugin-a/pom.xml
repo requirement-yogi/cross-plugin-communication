@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-v4_0_0.xsd">
+    <parent>
+        <groupId>com.requirementyogi.poc</groupId>
+        <artifactId>confluence-parent-pom</artifactId>
+        <version>1-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>plugin-a</artifactId>
+
+    <name>Plugin A</name>
+    <description>Extends a service from Plugin B</description>
+    <packaging>atlassian-plugin</packaging>
+
+    <licenses>
+        <license>
+            <name>Commercial</name>
+            <url>https://docs.requirementyogi.com/legal/eula</url>
+            <comments>The Requirement Yogi EULA applies to this software - See https://docs.requirementyogi.com/legal/eula</comments>
+        </license>
+    </licenses>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.atlassian.maven.plugins</groupId>
+                <artifactId>amps-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <!-- Ensure the plugin is Spring-powered -->
+                        <Spring-Context>*</Spring-Context>
+                        <Atlassian-Plugin-Key>${project.artifactId}</Atlassian-Plugin-Key>
+                        <Import-Package>
+                            com.atlassian.confluence.core;resolution:=optional;version="0.0.0",
+                            com.atlassian.plugin.spring.scanner.annotation.imports;resolution:=optional;version="0.0.0",
+                            javax.crypto;resolution:=optional;version="0.0.0",
+                            javax.crypto.spec;resolution:=optional;version="0.0.0",
+                            javax.inject;resolution:=optional;version="0.0.0",
+                            javax.lang.model.element;resolution:=optional;version="0.0.0",
+                            javax.ws.rs;resolution:=optional;version="0.0.0",
+                            org.springframework.beans.factory.annotation;resolution:=optional;version="0.0.0",
+
+                            <!-- For the spring scanner -->
+                            org.jspecify.annotations;resolution:=optional;version="0.0.0",
+                            sun.misc;resolution:=optional;version="0.0.0",
+                            *
+                        </Import-Package>
+
+                                                <!--<Atlassian-Scan-Folders>META-INF/plugin-descriptors</Atlassian-Scan-Folders>-->
+<!--                        <Import-Package>-->
+<!--                            &lt;!&ndash; According to https://confluence.atlassian.com/doc/struts-2-upgrade-1155473773.html &ndash;&gt;-->
+<!--                            com.opensymphony.xwork;resolution:=optional,-->
+<!--                            com.opensymphony.webwork;resolution:=optional,-->
+<!--                            com.opensymphony.webwork.interceptor;resolution:=optional,-->
+<!--                            org.apache.struts2;resolution:=optional,-->
+<!--                            org.apache.struts2.dispatcher;resolution:=optional,-->
+<!--                            org.apache.struts2.interceptor.parameter;resolution:=optional,-->
+<!--                            com.opensymphony.xwork2;resolution:=optional,-->
+
+
+<!--                            &lt;!&ndash; Shouldn't be necessary anymore. Also, not provided by Confluence. &ndash;&gt;-->
+<!--                            org.apache.http*;version="0.0.0",-->
+<!--                            com.atlassian.util.profiling;resolution:=optional;version="0.0.0",-->
+
+<!--                            &lt;!&ndash; Not necessary anymore in theory (was used for CQLSearchC719) &ndash;&gt;-->
+<!--                            bucket.core.persistence.hibernate;resolution:=optional;version="0.0.0",-->
+<!--                            com.atlassian.activeobjects.external;version="0.0.0",-->
+<!--                            com.atlassian.activeobjects.spi;version="0.0.0",-->
+<!--                            com.atlassian.applinks.api;version="0.0.0",-->
+<!--                            com.atlassian.applinks.api.*;version="0.0.0",-->
+<!--                            com.atlassian.bonnie;version="0.0.0",-->
+<!--                            com.atlassian.cache;version="0.0.0",-->
+<!--                            com.atlassian.config*;resolution:=optional;version="0.0.0",-->
+
+<!--                            &lt;!&ndash; We must put this instruction before confluence.*, otherwise it imports-->
+<!--                                 the packages as mandatory-->
+<!--                                 &ndash;&gt;-->
+<!--                            com.atlassian.confluence.search.v2.searchfilter;resolution:=optional;version="0.0.0",-->
+<!--                            com.atlassian.confluence.plugin.descriptor;resolution:="optional",-->
+<!--                            com.atlassian.confluence.plugin.descriptor.web;resolution:="optional",-->
+<!--                            com.atlassian.confluence.plugin.descriptor.web.conditions;resolution:="optional",-->
+<!--                            com.atlassian.confluence.plugin.descriptor.web.conditions.user;resolution:="optional",-->
+
+<!--                            &lt;!&ndash; The real problem here is that 2 subpackages (createcontent and featurediscovery) have-->
+<!--                                 versions 5.0.9 and 1.9 while the parent package com.atlassian.confluence requires 5.8.6 &ndash;&gt;-->
+<!--                            com.atlassian.confluence.*;version="0.0.0",-->
+<!--                            &lt;!&ndash;com.atlassian.confluence.pages.persistence.dao.bulk*;version="0.0.0",&ndash;&gt;-->
+<!--                            &lt;!&ndash;com.atlassian.confluence.plugins.createcontent*;version="0.0.0",-->
+<!--                            com.atlassian.confluence.plugins.featurediscovery.service;version="0.0.0",&ndash;&gt;-->
+<!--                            com.atlassian.core.filters*;resolution:=optional;version="0.0.0",-->
+<!--                            com.atlassian.core.exception;resolution:=optional;version="0.0.0",-->
+<!--                            com.atlassian.core.exception.*;resolution:=optional;version="0.0.0",-->
+<!--                            com.atlassian.core.task;version="0.0.0",-->
+<!--                            com.atlassian.core.task.*;version="0.0.0",-->
+<!--                            com.atlassian.core.user.preferences;resolution:=optional;version="0.0.0",-->
+<!--                            com.atlassian.core.user.preferences.*;resolution:=optional;version="0.0.0",-->
+<!--                            com.atlassian.core.util;resolution:=optional;version="0.0.0",-->
+<!--                            com.atlassian.core.util.*;resolution:=optional;version="0.0.0",-->
+<!--                            com.atlassian.event.api;version="0.0.0",-->
+<!--                            com.atlassian.extras.common.log;version="0.0.0",-->
+<!--                            com.atlassian.hibernate;version="0.0.0",-->
+<!--                            com.atlassian.plugin.module;version="0.0.0",-->
+<!--                            com.atlassian.plugin.web;version="0.0.0",-->
+<!--                            com.atlassian.plugin.web.*;version="0.0.0",-->
+<!--                            com.atlassian.plugin.descriptors;version="0.0.0",-->
+<!--                            com.atlassian.plugin;version="0.0.0",-->
+<!--                            com.atlassian.renderer;version="0.0.0",-->
+<!--                            com.atlassian.scheduler;version="0.0.0",-->
+<!--                            com.atlassian.scheduler.config;version="0.0.0",-->
+<!--                            com.atlassian.scheduler.status;version="0.0.0",-->
+<!--                            com.atlassian.sal.api.*;version="0.0.0",-->
+<!--                            com.atlassian.upm.api.*;version="0.0.0",-->
+<!--                            com.atlassian.user;version="0.0.0",-->
+<!--                            com.atlassian.util.concurrent;resolution:=optional;version="0.0.0",-->
+<!--                            com.atlassian.xwork;version="0.0.0",-->
+<!--                            com.atlassian.annotations;version="0.0.0",-->
+<!--                            com.atlassian.mail;version="0.0.0",-->
+<!--                            com.atlassian.mail.queue;version="0.0.0",-->
+<!--                            com.atlassian.beehive;version="0.0.0",-->
+<!--                            com.atlassian.soy.renderer;version="0.0.0",-->
+<!--                            com.atlassian.webresource.api.assembler;version="0.0.0",-->
+
+
+<!--                            javax.annotation;version="0.0.0",-->
+<!--                            javax.annotation.*;version="0.0.0",-->
+<!--                            javax.imageio;version="0.0.0",-->
+<!--                            javax.inject;resolution:=optional;version="0.0.0",-->
+<!--                            javax.lang.model;version="0.0.0",-->
+<!--                            javax.lang.model.*;version="0.0.0",-->
+<!--                            javax.print.attribute;resolution:=optional;version="0.0.0",-->
+<!--                            javax.print;resolution:=optional;version="0.0.0",-->
+<!--                            javax.servlet.http;version="0.0.0",-->
+<!--                            javax.servlet;version="0.0.0",-->
+<!--                            javax.ws.rs.core;version="0.0.0",-->
+<!--                            javax.ws.rs;version="0.0.0",-->
+<!--                            javax.xml.bind.annotation;version="0.0.0",-->
+<!--                            javax.xml.namespace;version="0.0.0",-->
+<!--                            javax.xml.stream.events;version="0.0.0",-->
+<!--                            javax.xml.stream;version="0.0.0",-->
+<!--                            javax.xml.transform*;resolution:=optional;version="0.0.0",-->
+<!--                            javax.xml.parsers;resolution:=optional;version="0.0.0",-->
+<!--                            net.java.ao.schema;version="0.0.0",-->
+<!--                            net.java.ao;version="0.0.0",-->
+<!--                            org.joda.time*;resolution:=optional;version="0.0.0",-->
+<!--                            org.slf4j*;resolution:=optional;version="0.0.0",-->
+
+<!--                            &lt;!&ndash; Yeah. This is for C7.19-C8.9, they don't support the same annotations &ndash;&gt;-->
+<!--                            com.fasterxml.jackson.annotation;resolution:=optional;version="0.0.0",-->
+<!--                            org.codehaus.jackson.annotate;resolution:=optional;version="0.0.0",-->
+
+<!--                            &lt;!&ndash;  For  atlassian-rest-v2-api&ndash;&gt;-->
+<!--                            com.atlassian.plugins.rest.api.security.annotation;resolution:=optional;version="0.0.0",-->
+<!--                            com.atlassian.plugins.rest.api.security.exception;resolution:=optional;version="0.0.0",-->
+<!--                            com.atlassian.plugins.rest.api.multipart;resolution:=optional;version="0.0.0",-->
+<!--                            &lt;!&ndash;  For the REST API v1 (before C9.0) &ndash;&gt;-->
+<!--                            com.atlassian.plugins.rest.common.multipart;resolution:=optional;version="0.0.0",-->
+<!--                            &lt;!&ndash; End of REST APIs &ndash;&gt;-->
+<!--                            &lt;!&ndash; For the @Component annotation scanning &ndash;&gt;-->
+<!--                            org.springframework.stereotype;version="0.0.0",-->
+<!--                            org.springframework.lang;version="0.0.0",-->
+<!--                            org.springframework.beans;version="0.0.0",-->
+<!--                            org.springframework.beans.factory;version="0.0.0",-->
+<!--                            org.springframework.beans.factory.config;version="0.0.0",-->
+<!--                            org.springframework.beans.factory.annotation;version="0.0.0",-->
+<!--                            org.springframework.util;version="0.0.0",-->
+<!--                            com.atlassian.spring.container;version="0.0.0",-->
+<!--                            org.springframework.cglib.core,-->
+<!--                            org.springframework.cglib.proxy,-->
+<!--                            org.springframework.cglib.reflect,-->
+<!--                            org.springframework.osgi.*;resolution:="optional",-->
+<!--                            org.eclipse.gemini.blueprint.*;resolution:="optional",-->
+<!--                            &lt;!&ndash; For confluence 9.0 &ndash;&gt;-->
+<!--                            com.atlassian.plugins.rest.common.security;resolution:=optional;version="0.0.0",-->
+<!--                            &lt;!&ndash; For @ModuleType &ndash;&gt;-->
+<!--                            com.atlassian.plugin.hostcontainer;resolution:=optional;version="0.0.0",-->
+<!--                            &lt;!&ndash;org.springframework.context;resolution:=optional;version="0.0.0",&ndash;&gt;-->
+<!--                            com.atlassian.plugin.osgi.external;resolution:=optional;version="0.0.0",-->
+<!--                            com.atlassian.plugin.osgi.bridge.external;version="0.0.0",-->
+
+<!--                            &lt;!&ndash;For the ConfluenceAppSpringConfig with @Configuration to Work (including the *)&ndash;&gt;-->
+<!--                            org.jspecify.annotations;resolution:=optional;version="0.0.0",-->
+<!--                            sun.misc;resolution:=optional;version="0.0.0",-->
+<!--                            *-->
+<!--                        </Import-Package>-->
+                    </instructions>
+                    <banningExcludes>
+                        <!-- Atlassian said we MUST ship them in C8.7 if we want them -->
+                        <exclude>com.google.code.findbugs:jsr305</exclude>
+                        <exclude>com.google.guava:guava</exclude>
+                        <exclude>org.apache.commons:commons-lang3</exclude>
+                        <exclude>commons-io:commons-io</exclude>
+                        <exclude>com.google.code.gson:gson</exclude>
+                    </banningExcludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.atlassian.plugin</groupId>
+                <!-- See https://bitbucket.org/atlassian/atlassian-spring-scanner -->
+                <artifactId>atlassian-spring-scanner-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-bundle-artifact</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>attach-artifact</goal>
+                        </goals>
+                        <configuration>
+                            <artifacts>
+                                <artifact>
+                                    <file>${project.build.directory}/${project.build.finalName}.jar</file>
+                                    <type>jar</type>
+                                </artifact>
+                            </artifacts>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <!-- Runs NPM to transpile ES6 javascript files
+                     In dev mode, you can do it manually using:
+
+                     npm run build in requirementyogi folder
+                     mvn install -DskipWebpack #fast mode
+                -->
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>quick-reload-local</id>
+                        <phase>install</phase>
+                        <goals><goal>exec</goal></goals>
+                        <configuration>
+                            <executable>${project.build.directory}/../../../ry-dc/cp.sh</executable>
+                            <commandlineArgs>${project.build.directory}/${artifactId}-${version}.jar</commandlineArgs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <!-- Filtering means we replace ${} variables -->
+                <filtering>true</filtering>
+                <includes>
+                    <include>atlassian-plugin.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>atlassian-plugin.xml</exclude>
+                </excludes>
+            </resource>
+        </resources>
+    </build>
+
+    <properties>
+        <base.package>com.requirementyogi.datacenter.confluenceapp</base.package>
+        <swagger.base.path>/rest/reqs/1</swagger.base.path>
+        <official.plugin.name>Requirement Yogi</official.plugin.name>
+        <official.plugin.key>requirementyogi</official.plugin.key>
+        <official.plugin.complete.key>com.playsql.${official.plugin.key}</official.plugin.complete.key>
+        <!-- A few letters to identify this plugin / lib. Used for the
+         files that may override each other in the final jar. Should be
+         the same as the plugin letters in webpack.config.js -->
+        <artifact.letters>ry</artifact.letters>
+    </properties>
+</project>
