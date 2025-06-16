@@ -1,9 +1,9 @@
-package com.requirementyogi.poc.plugin.b.rest;
+package com.requirementyogi.poc.plugin.a.rest;
 
 import com.atlassian.plugin.PluginAccessor;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
-import com.requirementyogi.poc.plugin.b.managers.ComponentB;
-import com.requirementyogi.poc.plugin.b.api.MyInterface;
+import com.requirementyogi.poc.plugin.a.managers.ComponentA;
+import com.requirementyogi.poc.plugin.a.api.MyInterface;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -20,16 +20,16 @@ import javax.ws.rs.Produces;
 @Path("/magic")
 public class MagicResource {
 
-    private final ComponentB componentB;
+    private final ComponentA componentA;
     private final PluginAccessor pluginAccessor;
 
     @Inject
-    public MagicResource(ComponentB componentB,
+    public MagicResource(ComponentA componentA,
                          @ComponentImport PluginAccessor pluginAccessor
     ) {
-        this.componentB = componentB;
+        this.componentA = componentA;
         this.pluginAccessor = pluginAccessor;
-        System.out.println("====== Plugin B: Magic Resource loaded");
+        System.out.println("====== Plugin A: Magic Resource loaded");
     }
 
     @GET
@@ -37,7 +37,7 @@ public class MagicResource {
     public String getSummary() {
         return
                 "<p><a href=\"magic/1\">Single component</a></p>"
-                + "<p><a href=\"magic/2\">PluginAccessor.getEnabledModulesByClass(ComponentB.class)</a></p>"
+                + "<p><a href=\"magic/2\">PluginAccessor.getEnabledModulesByClass(ComponentA.class)</a></p>"
                 + "<p><a href=\"magic/3\">PluginAccessor.getEnabledModulesByClass(MyInterface.class)</a></p>"
                 ;
     }
@@ -46,7 +46,7 @@ public class MagicResource {
     @Path("/1")
     @Produces("text/plain; charset=utf8")
     public String getOneBean() {
-        return componentB.getName();
+        return componentA.getName();
     }
 
     @GET
@@ -54,7 +54,7 @@ public class MagicResource {
     @Produces("text/plain; charset=utf8")
     public String listWithPluginAccessor() {
         String response = "List for the single component:";
-        for (ComponentB module : pluginAccessor.getEnabledModulesByClass(ComponentB.class)) {
+        for (ComponentA module : pluginAccessor.getEnabledModulesByClass(ComponentA.class)) {
             response += "\n-" + module.getName();
         }
         return response;

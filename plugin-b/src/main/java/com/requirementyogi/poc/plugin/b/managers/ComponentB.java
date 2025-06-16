@@ -1,7 +1,7 @@
 package com.requirementyogi.poc.plugin.b.managers;
 
 import com.atlassian.plugin.spring.scanner.annotation.export.ExportAsService;
-import com.requirementyogi.poc.plugin.b.api.MyInterface;
+import com.requirementyogi.poc.plugin.a.api.MyInterface;
 import org.springframework.stereotype.Component;
 
 @Component

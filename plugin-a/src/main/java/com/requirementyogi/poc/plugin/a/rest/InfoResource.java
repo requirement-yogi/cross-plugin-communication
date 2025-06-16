@@ -3,6 +3,7 @@ package com.requirementyogi.poc.plugin.a.rest;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 
 /**
  * A resource to confirm that the plugin is up and running,
@@ -20,8 +21,8 @@ public class InfoResource {
     }
 
     @GET
-    //@Produces(BaseUtils.JSON_UTF8)
+    @Produces("text/html; charset=utf8")
     public String info() {
-        return "Plugin A";
+        return "Plugin A<br/><br/><a href=\"magic/1\">Proceed...</a>";
     }
 }

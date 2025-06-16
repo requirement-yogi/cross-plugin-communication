@@ -10,7 +10,7 @@
     <artifactId>plugin-b</artifactId>
 
     <name>Plugin B</name>
-    <description>Main plugin</description>
+    <description>Extends a service from Plugin B</description>
     <packaging>atlassian-plugin</packaging>
 
     <licenses>
@@ -20,6 +20,15 @@
             <comments>The Requirement Yogi EULA applies to this software - See https://docs.requirementyogi.com/legal/eula</comments>
         </license>
     </licenses>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.requirementyogi.poc</groupId>
+            <artifactId>plugin-a</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
@@ -32,7 +41,11 @@
                         <!-- Ensure the plugin is Spring-powered -->
                         <Spring-Context>*</Spring-Context>
                         <Atlassian-Plugin-Key>${project.artifactId}</Atlassian-Plugin-Key>
+                        <DynamicImport-Package>
+                            com.requirementyogi.poc.plugin.b.api;resolution:=optional;version="0.0"
+                        </DynamicImport-Package>
                         <Import-Package>
+                            !com.requirementyogi.poc.plugin.b.api,
                             com.atlassian.confluence.core;resolution:=optional;version="0.0.0",
                             com.atlassian.plugin.spring.scanner.annotation.imports;resolution:=optional;version="0.0.0",
                             javax.crypto;resolution:=optional;version="0.0.0",
@@ -40,28 +53,13 @@
                             javax.inject;resolution:=optional;version="0.0.0",
                             javax.lang.model.element;resolution:=optional;version="0.0.0",
                             javax.ws.rs;resolution:=optional;version="0.0.0",
-
-                            <!-- For Spring annotations -->
-                            org.springframework.stereotype;resolution:=optional;version="0.0.0",
-                            org.springframework.lang;resolution:=optional;version="0.0.0",
-                            org.springframework.beans;resolution:=optional;version="0.0.0",
-                            org.springframework.beans.factory;resolution:=optional;version="0.0.0",
-                            org.springframework.beans.factory.config;resolution:=optional;version="0.0.0",
                             org.springframework.beans.factory.annotation;resolution:=optional;version="0.0.0",
-                            org.springframework.util;resolution:=optional;version="0.0.0",
-                            com.atlassian.spring.container;resolution:=optional;version="0.0.0",
-                            org.springframework.cglib.core;resolution:=optional;version="0.0.0",
-                            org.springframework.cglib.proxy;resolution:=optional;version="0.0.0",
-                            org.springframework.cglib.reflect;resolution:=optional;version="0.0.0",
 
                             <!-- For the spring scanner -->
                             org.jspecify.annotations;resolution:=optional;version="0.0.0",
                             sun.misc;resolution:=optional;version="0.0.0",
                             *
                         </Import-Package>
-                        <Export-Package>
-                            com.requirementyogi.poc.plugin.b.api
-                        </Export-Package>
 
                                                 <!--<Atlassian-Scan-Folders>META-INF/plugin-descriptors</Atlassian-Scan-Folders>-->
 <!--                        <Import-Package>-->

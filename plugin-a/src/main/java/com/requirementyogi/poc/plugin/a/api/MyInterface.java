@@ -1,4 +1,4 @@
-package com.requirementyogi.poc.plugin.b.api;
+package com.requirementyogi.poc.plugin.a.api;
 
 public interface MyInterface {
     String getName();

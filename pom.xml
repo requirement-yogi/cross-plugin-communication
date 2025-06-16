@@ -390,11 +390,6 @@
                     <!-- See https://bitbucket.org/atlassian/atlassian-spring-scanner -->
                     <artifactId>atlassian-spring-scanner-maven-plugin</artifactId>
                     <version>${atlz.libs.springscanner.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>com.atlassian.plugin</groupId>
-                    <!-- See https://bitbucket.org/atlassian/atlassian-spring-scanner -->
-                    <artifactId>atlassian-spring-scanner-maven-plugin</artifactId>
                     <executions>
                         <execution>
                             <goals>
@@ -408,20 +403,6 @@
                     <configuration>
                         <!-- Enable this to get build-time logging of annotations atlassian-spring-scanner-maven-plugin has noticed -->
                         <verbose>false</verbose>
-                        <scannedDependencies>
-                            <dependency>
-                                <groupId>com.requirementyogi.datacenter</groupId>
-                                <artifactId>confluence-utils</artifactId>
-                            </dependency>
-                            <dependency>
-                                <groupId>com.requirementyogi.datacenter</groupId>
-                                <artifactId>utils</artifactId>
-                            </dependency>
-                            <dependency>
-                                <groupId>com.requirementyogi.datacenter</groupId>
-                                <artifactId>shared-services</artifactId>
-                            </dependency>
-                        </scannedDependencies>
                     </configuration>
                 </plugin>
                 <plugin>

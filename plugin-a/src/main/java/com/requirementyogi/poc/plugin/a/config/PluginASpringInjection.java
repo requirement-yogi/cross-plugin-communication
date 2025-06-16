@@ -1,6 +1,5 @@
 package com.requirementyogi.poc.plugin.a.config;
 
-import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -9,9 +8,24 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class PluginASpringInjection {
-    private final AutowireCapableBeanFactory beanFactory;
-
-    public PluginASpringInjection(AutowireCapableBeanFactory beanFactory) {
-        this.beanFactory = beanFactory;
+    static {
+        System.out.println("====== Plugin A: Classloader OK");
     }
+
+    public PluginASpringInjection() {
+        System.out.println("====== Plugin A: Spring Injection loaded");
+    }
+
+    // If necessary, implement those:
+    //    @Bean
+    //    public FooService fooService() {
+    //        return new FooServiceImpl();
+    //    }
+    //
+    //    // The above component, exported to OSGi
+    //    // The "exportOsgiService" method comes from our helper library
+    //    @Bean
+    //    public FactoryBean<ServiceRegistration> exportFooService(FooService fooService) {
+    //        return exportOsgiService(fooService, ExportOptions.as(FooService.class));
+    //    }
 }

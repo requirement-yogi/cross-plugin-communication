@@ -5,18 +5,6 @@
         <!--<param name="atlassian-licensing-enabled">true</param>-->
         <vendor name="${project.organization.name}" url="${project.organization.url}" />
         <param name="configure.url">/rest/${project.artifactId}/1/info</param>
-<!--        <param name="configure.url">/admin/plugins/requirementyogi-admin/global-admin.action</param>-->
-<!--        <param name="post.install.url">/admin/plugins/requirementyogi-admin/global-admin.action?tab=onboarding</param>-->
-<!--        <param name="post.update.url">/admin/plugins/requirementyogi-admin/global-admin.action?tab=onboarding</param>-->
-
-<!--        <param name="plugin-icon">img/ry-v3-64px-simple.png</param>-->
-<!--        <param name="plugin-logo">img/ry-v3-72px-simple.png</param>-->
-
-<!--        <param name="plugin-banner">img/requirementyogi-banner-4.jpeg</param>-->
-<!--        <param name="vendor-icon">img/ry-v3-64px-simple.png</param>-->
-<!--        <param name="vendor-logo">img/ry-v3-72px-simple.png</param>-->
-
-        <!-- https://developer.atlassian.com/platform/marketplace/dc-apps-submitting-your-app/ -->
         <param name="atlassian-data-center-compatible">true</param>
         <param name="atlassian-data-center-status">compatible</param>
         <param name="read-only-access-mode-compatible">true</param>
@@ -24,16 +12,14 @@
         <param name="plugin-type">data-center</param>
     </plugin-info>
 
-    <web-item key="link-in-help" section="system.help/pages" weight="100">
-        <label key="Plugin A"/>
-        <link linkId="link-1">/rest/plugin-a/1/info</link>
+    <web-item key="marketplace-item" section="system.admin/marketplace_confluence" weight="200">
+        <label key="${project.name}"/>
+        <link linkId="marketplace-item-${project.artifactId}">/rest/${project.artifactId}/1/info</link>
     </web-item>
 
     <rest key="rest" path="/${project.artifactId}" version="1" name="REST resources">
-        <description>REST API for Requirement Yogi</description>
         <package>com.requirementyogi.poc.plugin.b.rest</package>
     </rest>
-
 
 </atlassian-plugin>
 
