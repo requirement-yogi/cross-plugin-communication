@@ -1,6 +1,5 @@
 package com.requirementyogi.poc.plugin.b.config;
 
-import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -9,9 +8,8 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class PluginBSpringInjection {
-    private final AutowireCapableBeanFactory beanFactory;
 
-    public PluginBSpringInjection(AutowireCapableBeanFactory beanFactory) {
-        this.beanFactory = beanFactory;
+    public PluginBSpringInjection() {
+        System.out.println("====== Plugin B: Spring Injection loaded");
     }
 }

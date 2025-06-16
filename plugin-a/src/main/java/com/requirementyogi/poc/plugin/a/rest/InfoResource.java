@@ -23,6 +23,6 @@ public class InfoResource {
     @GET
     @Produces("text/html; charset=utf8")
     public String info() {
-        return "Plugin A<br/><br/><a href=\"magic/1\">Proceed...</a>";
+        return "Plugin A<br/><br/><a href=\"magic\">Proceed...</a>";
     }
 }

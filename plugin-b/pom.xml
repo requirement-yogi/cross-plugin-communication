@@ -10,7 +10,7 @@
     <artifactId>plugin-b</artifactId>
 
     <name>Plugin B</name>
-    <description>Extends a service from Plugin B</description>
+    <description>Extends a service from Plugin A</description>
     <packaging>atlassian-plugin</packaging>
 
     <licenses>
@@ -53,7 +53,19 @@
                             javax.inject;resolution:=optional;version="0.0.0",
                             javax.lang.model.element;resolution:=optional;version="0.0.0",
                             javax.ws.rs;resolution:=optional;version="0.0.0",
+
+                            <!-- For Spring annotations -->
+                            org.springframework.stereotype;resolution:=optional;version="0.0.0",
+                            org.springframework.lang;resolution:=optional;version="0.0.0",
+                            org.springframework.beans;resolution:=optional;version="0.0.0",
+                            org.springframework.beans.factory;resolution:=optional;version="0.0.0",
+                            org.springframework.beans.factory.config;resolution:=optional;version="0.0.0",
                             org.springframework.beans.factory.annotation;resolution:=optional;version="0.0.0",
+                            org.springframework.util;resolution:=optional;version="0.0.0",
+                            com.atlassian.spring.container;resolution:=optional;version="0.0.0",
+                            org.springframework.cglib.core;resolution:=optional;version="0.0.0",
+                            org.springframework.cglib.proxy;resolution:=optional;version="0.0.0",
+                            org.springframework.cglib.reflect;resolution:=optional;version="0.0.0",
 
                             <!-- For the spring scanner -->
                             org.jspecify.annotations;resolution:=optional;version="0.0.0",
@@ -242,27 +254,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <!-- Runs NPM to transpile ES6 javascript files
-                     In dev mode, you can do it manually using:
-
-                     npm run build in requirementyogi folder
-                     mvn install -DskipWebpack #fast mode
-                -->
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>quick-reload-local</id>
-                        <phase>install</phase>
-                        <goals><goal>exec</goal></goals>
-                        <configuration>
-                            <executable>${project.build.directory}/../../../ry-dc/cp.sh</executable>
-                            <commandlineArgs>${project.build.directory}/${artifactId}-${version}.jar</commandlineArgs>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
         <resources>
             <resource>
@@ -282,6 +273,31 @@
             </resource>
         </resources>
     </build>
+
+    <profiles>
+        <profile>
+            <id>install</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>quick-reload-local</id>
+                                <phase>install</phase>
+                                <goals><goal>exec</goal></goals>
+                                <configuration>
+                                    <executable>${project.build.directory}/../../../ry-dc/cp.sh</executable>
+                                    <commandlineArgs>${project.build.directory}/${artifactId}-${version}.jar</commandlineArgs>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <properties>
         <base.package>com.requirementyogi.datacenter.confluenceapp</base.package>

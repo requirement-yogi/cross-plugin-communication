@@ -53,10 +53,11 @@ public class MagicResource {
     @Path("/2")
     @Produces("text/plain; charset=utf8")
     public String listWithPluginAccessor() {
-        String response = "List for the single component:";
+        String response = "pluginAccessor.getEnabledModulesByClass(ComponentA.class) should return Component A:";
         for (ComponentA module : pluginAccessor.getEnabledModulesByClass(ComponentA.class)) {
             response += "\n-" + module.getName();
         }
+        response += "\n(End of list)";
         return response;
     }
 
@@ -64,10 +65,12 @@ public class MagicResource {
     @Path("/3")
     @Produces("text/plain; charset=utf8")
     public String listInterfaceWithPluginAccessor() {
-        String response = "List for the interface:";
+        String response = "pluginAccessor.getEnabledModulesByClass(MyInterface.class) should return" +
+                " both Component A and Component B:";
         for (MyInterface module : pluginAccessor.getEnabledModulesByClass(MyInterface.class)) {
             response += "\n-" + module.getName();
         }
+        response += "\n(End of list)";
         return response;
     }
 }
