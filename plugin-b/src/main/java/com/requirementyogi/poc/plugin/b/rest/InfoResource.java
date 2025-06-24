@@ -6,18 +6,14 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 /**
- * A resource to confirm that the plugin is up and running,
- * and to confirm how serialization features behave.
- * <p>
- * Deployed at /rest/reqs/1/info
+ * Deployed at /rest/plugin-b/1/info
  * */
 @Path("/info")
 public class InfoResource {
 
-    //@Autowired
     @Inject
-    public InfoResource(
-    ) {
+    public InfoResource() {
+        // Nothing
     }
 
     @GET

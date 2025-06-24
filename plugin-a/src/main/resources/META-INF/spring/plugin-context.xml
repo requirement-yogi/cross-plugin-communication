@@ -10,9 +10,6 @@
         http://www.atlassian.com/schema/atlassian-scanner/2
         http://www.atlassian.com/schema/atlassian-scanner/2/atlassian-scanner.xsd">
 
-
-    <!-- See https://bitbucket.org/atlassian/atlassian-spring-scanner/src/master/
-    for the tutorial about setting up the Spring Scanner -->
-    <context:component-scan base-package="com.requirementyogi.poc.plugin.a.config" />
-    <atlassian-scanner:scan-indexes/>
+    <context:annotation-config/>
+    <bean class="com.requirementyogi.poc.plugin.a.config.PluginASpringInjection"/>
 </beans>

@@ -1,15 +1,15 @@
 package com.requirementyogi.poc.plugin.b.managers;
 
-import com.atlassian.plugin.spring.scanner.annotation.export.ExportAsService;
 import com.requirementyogi.poc.plugin.a.api.MyInterface;
-import org.springframework.stereotype.Component;
+import com.requirementyogi.poc.plugin.a.api.MyInterface2;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@Component
-@ExportAsService({ MyInterface.class })
-public class ComponentB implements MyInterface {
+public class ComponentB implements MyInterface, MyInterface2 {
+    private final static Logger log = LoggerFactory.getLogger(ComponentB.class);
 
     public ComponentB() {
-        System.out.println("====== Plugin B: Component B loaded");
+        log.error("\n====== Plugin B: Component B loaded");
     }
 
     @Override
