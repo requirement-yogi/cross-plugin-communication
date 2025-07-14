@@ -26,8 +26,8 @@ public class PluginBSpringInjection {
         return new ComponentB();
     }
 
-    @Bean
-    public FactoryBean<ServiceRegistration> exportComponentB(ComponentB componentB) {
-        return OsgiServices.exportOsgiService(componentB, ExportOptions.as(MyInterface.class, MyInterface2.class));
-    }
+//    @Bean
+//    public FactoryBean<ServiceRegistration> exportComponentB(ComponentB componentB) {
+//        return OsgiServices.exportOsgiService(componentB, ExportOptions.as(MyInterface.class, MyInterface2.class));
+//    }
 }

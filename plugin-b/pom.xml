@@ -40,7 +40,7 @@
                     <instructions>
                         <!-- Ensure the plugin is Spring-powered -->
                         <Spring-Context>*</Spring-Context>
-                        <Atlassian-Plugin-Key>${project.artifactId}</Atlassian-Plugin-Key>
+<!--                        <Atlassian-Plugin-Key>${project.artifactId}</Atlassian-Plugin-Key>-->
                         <DynamicImport-Package>
                             com.requirementyogi.poc.plugin.b.api;resolution:=optional;version="0.0"
                         </DynamicImport-Package>

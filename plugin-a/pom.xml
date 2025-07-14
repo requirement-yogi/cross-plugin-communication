@@ -31,7 +31,7 @@
                     <instructions>
                         <!-- Ensure the plugin is Spring-powered -->
                         <Spring-Context>*</Spring-Context>
-                        <Atlassian-Plugin-Key>${project.artifactId}</Atlassian-Plugin-Key>
+<!--                        <Atlassian-Plugin-Key>${project.artifactId}</Atlassian-Plugin-Key>-->
                         <Import-Package>
                             com.atlassian.confluence.core;resolution:=optional;version="0.0.0",
                             com.atlassian.plugin.spring.scanner.annotation.imports;resolution:=optional;version="0.0.0",

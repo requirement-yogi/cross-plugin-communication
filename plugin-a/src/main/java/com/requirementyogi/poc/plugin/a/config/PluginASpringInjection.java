@@ -34,11 +34,11 @@ public class PluginASpringInjection {
     public ComponentA componentA() {
         return new ComponentA();
     }
-
-    @Bean
-    public FactoryBean<ServiceRegistration> exportComponentA(ComponentA componentA) {
-        return OsgiServices.exportOsgiService(componentA, ExportOptions.as(MyInterface.class));
-    }
+//
+//    @Bean
+//    public FactoryBean<ServiceRegistration> exportComponentA(ComponentA componentA) {
+//        return OsgiServices.exportOsgiService(componentA, ExportOptions.as(MyInterface.class));
+//    }
 
     @Bean
     public PluginAccessor getPluginAccessor() {

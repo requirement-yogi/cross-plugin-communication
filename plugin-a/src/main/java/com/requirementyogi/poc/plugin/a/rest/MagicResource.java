@@ -6,6 +6,9 @@ import com.requirementyogi.poc.plugin.a.api.MyInterface;
 import com.requirementyogi.poc.plugin.a.managers.ComponentA;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -18,6 +21,7 @@ import java.util.List;
  * */
 @SuppressWarnings("StringConcatenationInLoop")
 @Path("/magic")
+@Component
 public class MagicResource {
 
     private final static Logger log = LoggerFactory.getLogger(MagicResource.class);
@@ -26,12 +30,11 @@ public class MagicResource {
     private final MyInterface myInterface;
     private final PluginAccessor pluginAccessor;
 
-    @Inject
-    public MagicResource(ComponentA componentA,
-                         MyInterface myInterface,
-                         @ComponentImport PluginAccessor pluginAccessor
+    @Autowired
+    public MagicResource(MyInterface myInterface,
+                         @ComponentImport @Qualifier("pluginAccessor") PluginAccessor pluginAccessor
     ) {
-        this.componentA = componentA;
+        this.componentA = null;
         this.myInterface = myInterface;
         this.pluginAccessor = pluginAccessor;
         log.error("\n====== Plugin A: Magic Resource loaded");

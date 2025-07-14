@@ -21,5 +21,9 @@
         <package>com.requirementyogi.poc.plugin.a.rest</package>
     </rest>
 
+    <component key="componentA" class="com.requirementyogi.poc.plugin.a.managers.ComponentA">
+        <description>Component A</description>
+        <interface>com.requirementyogi.poc.plugin.a.api.MyInterface</interface>
+    </component>
 </atlassian-plugin>
 
